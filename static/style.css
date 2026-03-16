@@ -1,0 +1,37 @@
+body {
+    font-family: sans-serif;
+    background: #f3f3f3;
+    padding: 40px;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+input,
+select {
+    padding: 6px;
+    margin: 4px;
+}
+
+button {
+    padding: 8px 16px;
+}
+
+.error {
+    color: red;
+}
+
+img {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+.wide-input {
+    width: 100%;
+    box-sizing: border-box;
+}

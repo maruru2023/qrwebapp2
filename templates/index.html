@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>QRコード生成ツール</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>QRコード生成ツール</h2>
+
+        <form method="post">
+            <p>
+                テキスト（必須）<br>
+                <input type="text" name="text" value="{{ text }}" required class="wide-input">
+            </p>
+
+            <p>
+                サイズ(px)
+                <input type="number" name="size" value="{{ size }}" min="100" max="1024">
+            </p>
+
+            <p>
+                余白(border)
+                <input type="number" name="border" value="{{ border }}" min="0" max="20">
+            </p>
+
+            <p>
+                誤り訂正
+                <select name="error_level">
+                    <option value="L" {% if error_level == "L" %}selected{% endif %}>L</option>
+                    <option value="M" {% if error_level == "M" %}selected{% endif %}>M</option>
+                    <option value="Q" {% if error_level == "Q" %}selected{% endif %}>Q</option>
+                    <option value="H" {% if error_level == "H" %}selected{% endif %}>H</option>
+                </select>
+            </p>
+
+            <button type="submit">生成</button>
+        </form>
+
+        {% if error_message %}
+            <p class="error">エラー: {{ error_message }}</p>
+        {% endif %}
+
+        {% if image_data_url %}
+            <h3>生成結果</h3>
+            <img src="{{ image_data_url }}" alt="QRコード">
+            <p>
+                <a href="{{ image_data_url }}" download="qr.png">PNGダウンロード</a>
+            </p>
+        {% endif %}
+    </div>
+</body>
+</html>
